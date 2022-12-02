@@ -3,15 +3,44 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import beans.Task;
+import beans.Voto;
 public class TaskDao {
 	private final Connection conn;
 	public TaskDao(){
 		conn = new Conexao().retornaConexao();
 		
+	}
+	public int selectID() throws SQLException {
+		Voto v = new Voto();
+		 ResultSet rs = null;
+	        Statement st;
+	        try{
+	           st=conn.createStatement();
+	           rs=st.executeQuery("select id FROM task ORDER BY id DESC LIMIT 1");
+	           rs.next();         
+	        }catch(Exception e){
+	           System.out.println(e.getMessage());
+	        }
+	        System.out.println(rs.getInt("id"));
+	        return rs.getInt("id");
+	}
+	public void insertID() throws SQLException {
+		int i = selectID();
+		Voto v = new Voto();
+	        PreparedStatement st;
+	        try{
+	           st=conn.prepareStatement("insert into voto (fk_task_id) values (?)");
+	           st.setInt(1,i);
+	           st.execute();
+	           System.out.println(v.getId());
+	        }catch(Exception e){
+	           System.out.println(e.getMessage());
+	        }
 	}
 	public void inserir(Task t) {
 		PreparedStatement stmt;
@@ -45,7 +74,6 @@ public class TaskDao {
             stmt.setString(23,t.getHora10());
             stmt.execute();
             stmt.close();
-            System.out.println(t.getData1()+"asd");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -173,4 +201,5 @@ public class TaskDao {
         }
         return t;
     }
+	
 }

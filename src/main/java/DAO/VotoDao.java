@@ -12,18 +12,26 @@ public class VotoDao {
 	public VotoDao() {
 		conn = new Conexao().retornaConexao();
 	}
-	public void somaVoto(String data,int id) throws SQLException {
+	public void somaVoto(int id,String data) throws SQLException {
 		PreparedStatement stmt;
-		stmt=conn.prepareStatement("update voto set "+data+"="+data+"+1 where fk_task_id="+id+"");
+		stmt=conn.prepareStatement("update voto set "+data+"="+data+"+1 where fk_task_id="+id);
 		stmt.execute();
 	}
-	public int retornaVotos(String data,int id) throws SQLException {
+	public String retornaVotos(String data,int id) throws SQLException {
 		Statement stmt;
 		ResultSet rs;
 		stmt=conn.createStatement();
-		rs=stmt.executeQuery("select "+data+" from voto where fk_task_id="+id+"");
-		rs.next();
-		return Integer.parseInt(rs.getString(data));
+		rs=stmt.executeQuery("select "+data+" from voto where fk_task_id="+id);
+		if(rs.next()) {
+		rs.getString(data);
+		if(rs.getString(data)!=null) {
+			return rs.getString(data);
+		}
+		} else {
+			return "0";
+		}
+		
+		return rs.getString(data);
 		
 	}
 }

@@ -51,6 +51,8 @@
 		t.setHora9(hora9);
 		t.setHora10(hora10);
 		td.inserir(t);
+		td.insertID();
+		td.selectID();
 		%>
 		<script>
 			alert('Task salva');

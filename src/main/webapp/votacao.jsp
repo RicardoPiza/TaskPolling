@@ -49,26 +49,35 @@
                     out.print(request.getParameter("descricao"));
                     out.print("</td><td>");
                     out.print(request.getParameter("data1")+" / "+request.getParameter("hora1"));
-                    out.print("<br><button href='javascript:func()' onclick='confirma("+id+","+data1+
-                    ")' class = 'btn btn-warning ml-4' title = 'Votar'><i class = 'fa fa fa-check'></i></button></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                    ","+"&quot data1 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data2")+request.getParameter("hora2"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data2 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data3")+request.getParameter("hora3"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data3 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data4")+request.getParameter("hora4"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
-                    out.print(request.getParameter("data5")+request.getParameter("hora5"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data4 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
+                    out.print(request.getParameter("data5")+request.getParameter("hora5"));																						
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data5 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data6")+request.getParameter("hora6"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data6 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data7")+request.getParameter("hora7"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data7 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data8")+request.getParameter("hora8"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data8 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data9")+request.getParameter("hora9"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data9 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                     out.print(request.getParameter("data10")+request.getParameter("hora10"));
-                    out.print("<br><a class = 'btn btn-warning mr-2' title = 'Votar'><i class = 'fa fa fa-check'></i></a></td><td>");
+                    out.print("<br><button class = 'btn btn-warning ml-4' title = 'Votar' href='javascript:func()' onclick='confirma("+id+
+                            ","+"&quot data10 &quot"+")'><i class = 'fa fa fa-check'></i></button></td><td>");
                 
             %>
             

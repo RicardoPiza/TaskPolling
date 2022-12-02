@@ -33,8 +33,6 @@ public class UserDao {
 		
 			stmt=conn.prepareStatement(
               "select * from usuarios where email = '"+email+"'");
-            
-            System.out.print(email +"  "+stmt.getMaxRows());
             rs = stmt.executeQuery();
             if(rs.next()) {
             	return false;           	

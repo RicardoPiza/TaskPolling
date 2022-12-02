@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="beans.Task" %>
 <%@ page import="DAO.TaskDao" %>
+<%@ page import="DAO.VotoDao" %>
+<%@ page import="beans.Voto" %>
 <%@page import="java.util.ArrayList"%>
 <%
 
@@ -55,7 +57,10 @@
             <%
                 TaskDao td= new TaskDao();
             	Task t = new Task();
+            	VotoDao vd = new VotoDao();
+            	Voto v = new Voto();
                 ArrayList<Task> lista=td.buscarTodos();
+                
                 for(int i=0;i<lista.size();i++){
                     out.print("<tr><td>");
                     out.print(lista.get(i).getId());
@@ -65,24 +70,34 @@
                     out.print(lista.get(i).getDescricao());
                     out.print("</td><td>");
                     out.print(lista.get(i).getData1()+" / "+lista.get(i).getHora1());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data1", v.getId()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData2()+" / "+lista.get(i).getHora2());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data2", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData3()+" / "+lista.get(i).getHora3());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data3", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData4()+" / "+lista.get(i).getHora4());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data4", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData5()+" / "+lista.get(i).getHora5());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data5", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData6()+" / "+lista.get(i).getHora6());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data6", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData7()+" / "+lista.get(i).getHora7());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data7", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData8()+" / "+lista.get(i).getHora8());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data8", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData9()+" / "+lista.get(i).getHora9());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data9", 1));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData10()+" / "+lista.get(i).getHora10());
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data10", 1));
                     out.print("</td><td>");
                     out.print("</td><td><a href='alterar.jsp?");
                     out.print("id="+lista.get(i).getId()+"&nome="+lista.get(i).getNome());

@@ -15,8 +15,8 @@
                 }else{
                     String data = request.getParameter("data");
                     int id = Integer.parseInt(request.getParameter("id"));
-                    vd.somaVoto(data,id );
-                    response.sendRedirect("votacao.jsp");
+                    vd.somaVoto(id,data);
+                    response.sendRedirect("index.jsp");
                 }
             }catch(Exception e){
                 out.print("Erro ao votar!");
