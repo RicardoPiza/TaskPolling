@@ -18,7 +18,7 @@ public class TaskDao {
 	}
 	public int selectID() throws SQLException {
 		Voto v = new Voto();
-		 ResultSet rs = null;
+		ResultSet rs = null;
 	        Statement st;
 	        try{
 	           st=conn.createStatement();
