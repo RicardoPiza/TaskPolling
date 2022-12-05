@@ -1,4 +1,4 @@
-# TaskVotation
+# TaskPolling
 Projeto em jsp para votação de horário para tarefas
 
 <h2>Proposta:</h2>
