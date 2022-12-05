@@ -2,7 +2,7 @@ package beans;
 
 public class Voto {
 	int id = 0;
-	int data1 =0;
+	int data1=0;
 	int data2=0;
 	int data3=0;
 	int data4=0;
@@ -12,9 +12,6 @@ public class Voto {
 	int data8=0;
 	int data9=0;
 	int data10=0;
-	
-	
-	
 	
 	public int getId() {
 		return id;

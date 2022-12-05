@@ -58,8 +58,8 @@
 	            <input type="date" name="data10" value="<%=request.getParameter("data10")%>"class="mr-4">
 	            <input type="time" name="hora10"value="<%=request.getParameter("hora10")%>"><br>
 	            <button type="submit" class="btn btn-success ml-5 mt-3">Alterar</button>
-	            <a href="index.jsp" ><button class="btn btn-danger ml-4 mt-3">Cancelar</button>
-	        </form></a>
+	             <input type="button" value="Cancelar" class="btn btn-danger ml-4 mt-3" onclick="history.back()">
+	        </form>
     	</div>
     	</div>
     </body>

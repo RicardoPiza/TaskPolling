@@ -7,7 +7,7 @@ String senha = request.getParameter("senha");
 UserDao ud = new UserDao();
 User u = new User();
 
-if (email != null && senha != null && !email.isEmpty() && !senha.isEmpty() &&ud.validarLogin(email, senha)==true) {
+if (email != null && senha != null && !email.isEmpty() && !senha.isEmpty() && ud.validarLogin(email, senha)==true) {
 	
 	u.setEmail(email);
 	u.setSenha(senha);

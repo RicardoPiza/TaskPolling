@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import beans.Task;
+import beans.User;
 import beans.Voto;
 public class TaskDao {
 	private final Connection conn;
@@ -22,33 +23,57 @@ public class TaskDao {
 	        try{
 	           st=conn.createStatement();
 	           rs=st.executeQuery("select id FROM task ORDER BY id DESC LIMIT 1");
-	           rs.next();         
+	           rs.next();
 	        }catch(Exception e){
 	           System.out.println(e.getMessage());
 	        }
-	        System.out.println(rs.getInt("id"));
+	        v.setId(rs.getInt("id"));
 	        return rs.getInt("id");
 	}
+	public boolean validarNome(String nome, String user) throws SQLException {
+		PreparedStatement stmt;
+		ResultSet rs;
+			stmt=conn.prepareStatement(
+              "select * from task where nome = '"+nome+"' and fk_id_user=(SELECT id from usuarios WHERE email='"+user+"')");
+            rs = stmt.executeQuery();
+            if(rs.next()) {
+            	return false;   
+            }
+            else {
+            	return true;
+            }
+        }
 	public void insertID() throws SQLException {
 		int i = selectID();
 		Voto v = new Voto();
 	        PreparedStatement st;
 	        try{
-	           st=conn.prepareStatement("insert into voto (fk_task_id) values (?)");
+	           st=conn.prepareStatement("insert into voto (fk_task_id,data1,data2,data3,data4,data5,data6,data7,data8,data9,data10) "
+	           		+ "values (?,?,?,?,?,?,?,?,?,?,?)");
 	           st.setInt(1,i);
+	           st.setInt(2, v.getData1());
+	           st.setInt(3, v.getData2());
+	           st.setInt(4, v.getData3());
+	           st.setInt(5, v.getData4());
+	           st.setInt(6, v.getData5());
+	           st.setInt(7, v.getData6());
+	           st.setInt(8, v.getData7());
+	           st.setInt(9, v.getData8());
+	           st.setInt(10, v.getData9());
+	           st.setInt(11, v.getData10());
 	           st.execute();
-	           System.out.println(v.getId());
 	        }catch(Exception e){
 	           System.out.println(e.getMessage());
 	        }
 	}
-	public void inserir(Task t) {
+	public void inserir(Task t, User u) {
 		PreparedStatement stmt;
 		try{
             stmt=conn.prepareStatement(
               "insert into task (id,nome,descricao,data1,data2,data3,data4,data5,data6,data7,data8,data9,"
-              + "data10,hora1,hora2,hora3,hora4,hora5,hora6,hora7,hora8,hora9,hora10) "
-              + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+              + "data10,hora1,hora2,hora3,hora4,hora5,hora6,hora7,hora8,hora9,hora10,fk_id_user) "
+              + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+              + "(SELECT id from usuarios WHERE email='"+u.getEmail()+"'))");
             stmt.setInt(1,t.getId());
             stmt.setString(2,t.getNome());
             stmt.setString(3,t.getDescricao());
@@ -78,13 +103,13 @@ public class TaskDao {
             System.out.println(e.getMessage());
         }
 	}
-	public ArrayList<Task> buscarTodos(){
+	public ArrayList<Task> buscarTodos(User u){
         ArrayList<Task> lista = new ArrayList<>();
         ResultSet rs;
         Statement st;
         try{
            st=conn.createStatement();
-           rs=st.executeQuery("select * from task");
+           rs=st.executeQuery("select * from task where fk_id_user=(SELECT id from usuarios WHERE email='"+u.getEmail()+"')");
            while(rs.next()){
         	   Task t = new Task();
                t.setId(rs.getInt("id"));

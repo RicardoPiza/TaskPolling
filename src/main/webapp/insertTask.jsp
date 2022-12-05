@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="beans.Task" %>
+<%@ page import="beans.User" %>
 <%@ page import="DAO.TaskDao" %>
 <%
 	Task t = new Task();
+	User u = new User();
 	TaskDao td = new TaskDao();
 	String task = (String) request.getParameter("nomeTask");
 	String descricao = (String) request.getParameter("descricao");
@@ -27,7 +29,7 @@
 	String hora8 = (String) request.getParameter("hora8");
 	String hora9 = (String) request.getParameter("hora9");
 	String hora10 = (String) request.getParameter("hora10");
-	if(task!=null && descricao!= null && !task.isEmpty() && !descricao.isEmpty()){
+	if(task!=null && descricao!= null && !task.isEmpty() && !descricao.isEmpty() && td.validarNome(task,(String)session.getAttribute("email"))==true){
 		t.setNome(task);
 		t.setDescricao(descricao);
 		t.setData1(data1);
@@ -50,12 +52,20 @@
 		t.setHora8(hora8);
 		t.setHora9(hora9);
 		t.setHora10(hora10);
-		td.inserir(t);
+		u.setEmail((String)session.getAttribute("email"));
+		td.inserir(t,u);
 		td.insertID();
 		td.selectID();
 		%>
 		<script>
 			alert('Task salva');
+			window.location.replace("index.jsp");
+		</script>
+	<%
+	} else{
+		%>
+		<script>
+			alert('Um nome com essa task já existe');
 			window.location.replace("index.jsp");
 		</script>
 	<%

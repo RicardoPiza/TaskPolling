@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="beans.Task" %>
+<%@ page import="beans.User" %>
 <%@ page import="DAO.TaskDao" %>
 <%@ page import="DAO.VotoDao" %>
 <%@ page import="beans.Voto" %>
@@ -30,10 +31,10 @@
 </head>
 <body>
 	<script>
-            function conf(id){
+            function conf(id,nome){
                 var resp=confirm('Deseja remover o id '+id+'?');
                 if(resp){
-                    window.location.href="excluir.jsp?id="+id;
+                    window.location.href="excluir.jsp?id="+id+"&nome="+nome;
                 }       
             }
             function link(id){
@@ -58,9 +59,9 @@
                 TaskDao td= new TaskDao();
             	Task t = new Task();
             	VotoDao vd = new VotoDao();
-            	Voto v = new Voto();
-                ArrayList<Task> lista=td.buscarTodos();
-                
+            	User u = new User();
+            	u.setEmail((String)session.getAttribute("email"));
+                ArrayList<Task> lista=td.buscarTodos(u);
                 for(int i=0;i<lista.size();i++){
                     out.print("<tr><td>");
                     out.print(lista.get(i).getId());
@@ -70,41 +71,51 @@
                     out.print(lista.get(i).getDescricao());
                     out.print("</td><td>");
                     out.print(lista.get(i).getData1()+" / "+lista.get(i).getHora1());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data1", v.getId()));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data1",lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData2()+" / "+lista.get(i).getHora2());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data2", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data2", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData3()+" / "+lista.get(i).getHora3());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data3", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data3", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData4()+" / "+lista.get(i).getHora4());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data4", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data4", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData5()+" / "+lista.get(i).getHora5());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data5", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data5", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData6()+" / "+lista.get(i).getHora6());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data6", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data6", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData7()+" / "+lista.get(i).getHora7());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data7", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data7", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData8()+" / "+lista.get(i).getHora8());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data8", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data8", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData9()+" / "+lista.get(i).getHora9());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data9", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data9", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print(lista.get(i).getData10()+" / "+lista.get(i).getHora10());
-                    out.print("<br>Total de votos: "+vd.retornaVotos("data10", 1));
+                    out.print("<br>Total de votos: "+vd.retornaVotos("data10", lista.get(i).getNome(),u.getEmail()));
                     out.print("</td><td>");
                     out.print("</td><td><a href='alterar.jsp?");
                     out.print("id="+lista.get(i).getId()+"&nome="+lista.get(i).getNome());
-                    out.print("&descricao="+lista.get(i).getDescricao());
+                    out.print("&descricao="+lista.get(i).getDescricao()); 
+                    out.print("&data1="+lista.get(i).getData1()+"&data2="+lista.get(i).getData2());
+                    out.print("&data3="+lista.get(i).getData3()+"&data4="+lista.get(i).getData4());
+                    out.print("&data5="+lista.get(i).getData5()+"&data6="+lista.get(i).getData6());
+                    out.print("&data7="+lista.get(i).getData7()+"&data8="+lista.get(i).getData8());
+                    out.print("&data9="+lista.get(i).getData9()+"&data10="+lista.get(i).getData10());
+                    out.print("&hora1="+lista.get(i).getHora1()+"&hora2="+lista.get(i).getHora2());
+                    out.print("&hora3="+lista.get(i).getHora3()+"&hora4="+lista.get(i).getHora4());
+                    out.print("&hora5="+lista.get(i).getHora5()+"&hora6="+lista.get(i).getHora6());
+                    out.print("&hora7="+lista.get(i).getHora7()+"&hora8="+lista.get(i).getHora8());
+                    out.print("&hora9="+lista.get(i).getHora9()+"&hora10="+lista.get(i).getHora10());
                     out.print("'><button class='btn btn-primary mr-2' title = 'Alterar'><i class='fa-thin fa fa fa-pen'></i></button></a>");
                     out.print("<button class = 'btn btn-danger mr-2' title = 'Excluir' href='javascript:func()' ");
-                    out.print("onclick='conf("+lista.get(i).getId()+")'><i class = 'fa fa fa-trash'></i></button>");
+                    out.print("onclick='conf("+lista.get(i).getId()+",&quot "+lista.get(i).getNome()+" &quot)'><i class = 'fa fa fa-trash'></i></button>");
                     out.print("<a class = 'btn btn-warning mr-2' title = 'Abrir Votação' href='votacao.jsp?id="+lista.get(i).getId()+
                     "&nome="+lista.get(i).getNome()+"&descricao="+lista.get(i).getDescricao()+"&hora1="+lista.get(i).getHora1()+
                     "&hora2="+lista.get(i).getHora2()+"&hora3="+lista.get(i).getHora3()+"&hora4="+""+lista.get(i).getHora4()+
@@ -140,9 +151,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script>
-    $('#meuModal').on('shown.bs.modal', function () {
-    	  $('#meuInput').trigger('focus')
-    	});
         $(document).ready(function() {
             var i = 1;
             $('#add').click(function() {

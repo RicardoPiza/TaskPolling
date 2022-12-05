@@ -10,13 +10,21 @@
 <body>
  	<% try{
                 VotoDao vd = new VotoDao();
-                if(request.getParameter("id").equals("")){
+                if(request.getParameter("nome").equals("")){
                     response.sendRedirect("index.jsp");
                 }else{
-                    String data = request.getParameter("data");
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    vd.somaVoto(id,data);
-                    response.sendRedirect("index.jsp");
+                    String nome = request.getParameter("nome").trim();
+                    String data = request.getParameter("data").trim();
+                    String email = (String)session.getAttribute("email");
+                    vd.somaVoto(nome,data,email);
+                    %>
+            		<script>
+            			alert('Votação concluida');
+            			window.location.replace("index.jsp");
+            		</script>
+            		<%
+                
+                    
                 }
             }catch(Exception e){
                 out.print("Erro ao votar!");
